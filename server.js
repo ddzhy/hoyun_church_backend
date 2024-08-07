@@ -1,6 +1,7 @@
 const express = require('express')
 const mysql = require('mysql')
 const cors = require('cors')
+const port = process.env.PORT || 8081
 
 const app = express();
 
@@ -9,10 +10,11 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "qazx1357@",
-    database: "signup"
+    host: "process.env.DB_HOST",
+    user: "process.env.DB_USER",
+    password: "process.env.DB_PASSWORD",
+    database: "process.env.DB_NAME",
+    port: "process.env.DB_PORT"
 })
 
 app.post('/signup', (req, res) => {
@@ -46,6 +48,6 @@ app.post('/login', (req, res) => {
 });
 
 
-app.listen(8081, () => {
-    console.log("Listening...");
+app.listen(port, () => {
+    console.log(`Listening on ${port}`);
 })
