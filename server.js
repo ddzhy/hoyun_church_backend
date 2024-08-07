@@ -5,7 +5,9 @@ const port = process.env.PORT || 8081
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://hoyunchurch.netlify.app/'  // Netlify에서 호스팅되는 프론트엔드 URL
+}));
 
 app.use(express.json());
 
