@@ -17,10 +17,10 @@ const db = mysql.createConnection({
     // user: "process.env.DB_USER",
     // password: "process.env.DB_PASSWORD",
     // database: "process.env.DB_NAME",
-    host: "process.env.DB_HOST",
-    user: "process.env.DB_USER",
-    password: "process.env.DB_PASSWORD",
-    database: "process.env.DB_NAME",
+    host: "bcowgazscvnaucuxrwya-mysql.services.clever-cloud.com",
+    user: "uri6aztvfszmmws5",
+    password: "FsdxYJV9pPpQ1PoH1gJD",
+    database: "bcowgazscvnaucuxrwya",
 })
 
 app.post('/signup', (req, res) => {
