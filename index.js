@@ -8,6 +8,8 @@ app.use(cors());
 
 app.use(express.json());
 
+app.get("/", (req, res) => res.send("express on vercel"));
+
 const PORT = process.env.PORT || 8081
 
 const db = mysql.createConnection({
