@@ -1,6 +1,7 @@
 const express = require('express')
 const mysql = require('mysql')
 const cors = require('cors')
+require('dotenv').config();
 
 const app = express();
 
@@ -13,14 +14,11 @@ app.get("/", (req, res) => res.send("express on vercel"));
 const PORT = process.env.PORT || 8081
 
 const db = mysql.createConnection({
-    // host: "process.env.DB_HOST",
-    // user: "process.env.DB_USER",
-    // password: "process.env.DB_PASSWORD",
-    // database: "process.env.DB_NAME",
-    host: "bcowgazscvnaucuxrwya-mysql.services.clever-cloud.com",
-    user: "uri6aztvfszmmws5",
-    password: "FsdxYJV9pPpQ1PoH1gJD",
-    database: "bcowgazscvnaucuxrwya",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+
 })
 
 app.post('/signup', (req, res) => {
