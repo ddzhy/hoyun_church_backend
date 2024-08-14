@@ -20,7 +20,7 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
 
-})
+});
 
 app.post('/signup', (req, res) => {
     const sql = "INSERT INTO login (`name`, `email`, `password`) VALUES (?)";
@@ -56,3 +56,5 @@ app.post('/login', (req, res) => {
 app.listen(PORT, () => {
     console.log('Listening');
 })
+
+// get redy
