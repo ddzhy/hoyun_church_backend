@@ -95,7 +95,7 @@ app.post('/login', (req, res) => {
                     res.cookie('token', token, {
                         httpOnly: true,
                         secure: true, // HTTPS 환경에서만 전송
-                        sameSite: 'Lax',
+                        sameSite: 'none',
                     });
 
                     return res.json("Success");
