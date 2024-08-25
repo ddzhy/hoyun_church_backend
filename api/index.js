@@ -9,27 +9,32 @@ require('dotenv').config();
 
 const app = express();
 
+const PORT = process.env.PORT || 8081;
+
 app.use(cors({
     origin: ["https://hoyun-church.kro.kr"],
     methods: ["POST", "GET"],
     credentials: true
 }));
-
 app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => res.send("express on vercel"));
-
-const PORT = process.env.PORT || 8081
 
 const db = mysql.createConnection({
     host: 'bcowgazscvnaucuxrwya-mysql.services.clever-cloud.com',
     user: 'uri6aztvfszmmws5',
     password: 'FsdxYJV9pPpQ1PoH1gJD',
     database: 'bcowgazscvnaucuxrwya',
+});
 
-})
-
+db.connect((err) => {
+    if (err) {
+        console.error('MySQL Connection Error:', err);
+        return;
+    }
+    console.log('Connected to MySQL database');
+});
 
 // JWT 검증 미들웨어 함수
 const verifyUser = (req, res, next) => {
@@ -50,7 +55,7 @@ const verifyUser = (req, res, next) => {
 
 // 회원가입 엔드포인트
 app.post('/signup', (req, res) => {
-    const sql = "INSERT INTO login (`name`, `email`, `password`) VALUES (?)";
+    const sql = "INSERT INTO new_table (`name`, `email`, `password`) VALUES (?)";
 
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         if (err) {
@@ -74,7 +79,7 @@ app.post('/signup', (req, res) => {
 
 // 로그인 엔드포인트
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM login WHERE `email` = ?";
+    const sql = "SELECT * FROM new_table WHERE `email` = ?";
     db.query(sql, [req.body.email], (err, data) => {
         if (err) {
             return res.json("Error");
@@ -103,8 +108,6 @@ app.get('/mypage', verifyUser, (req, res) => {
     return res.json({ status: "Success", name: user.name, email: user.email });
 });
 
-
 app.listen(PORT, () => {
-    console.log('Listening');
-})
-
+    console.log('Listening on port', PORT);
+});
