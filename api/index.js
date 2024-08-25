@@ -55,7 +55,7 @@ const verifyUser = (req, res, next) => {
 
 // 회원가입 엔드포인트
 app.post('/signup', (req, res) => {
-    const sql = "INSERT INTO new_table (`name`, `email`, `password`) VALUES (?)";
+    const sql = "INSERT INTO login (`name`, `email`, `password`) VALUES (?)";
 
     bcrypt.hash(req.body.password, 10, (err, hash) => {
         if (err) {
@@ -79,7 +79,7 @@ app.post('/signup', (req, res) => {
 
 // 로그인 엔드포인트
 app.post('/login', (req, res) => {
-    const sql = "SELECT * FROM new_table WHERE `email` = ?";
+    const sql = "SELECT * FROM login WHERE `email` = ?";
     db.query(sql, [req.body.email], (err, data) => {
         if (err) {
             return res.json("Error");
