@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
+
 const app = express();
 
 const PORT = process.env.PORT || 8081;
@@ -15,7 +16,6 @@ app.use(cors({
     methods: ["POST", "GET"],
     credentials: true
 }));
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -90,14 +90,7 @@ app.post('/login', (req, res) => {
                     const name = data[0].name;
                     const email = data[0].email; // 이메일 추가
                     const token = jwt.sign({ name, email }, "jwt-secret-key", { expiresIn: '1d' });
-                    
-                    // 쿠키 설정 시 보안 옵션 추가
-                    res.cookie('token', token, {
-                        httpOnly: true,
-                        secure: true, // HTTPS 환경에서만 전송
-                        sameSite: 'Lax',
-                    });
-
+                    res.cookie('token', token);
                     return res.json("Success");
                 } else {
                     return res.json("Fail");
