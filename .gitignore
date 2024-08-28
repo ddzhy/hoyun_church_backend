@@ -1,3 +1,2 @@
 # .gitignore 파일
-.env.production
 node_modules
