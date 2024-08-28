@@ -4,15 +4,14 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-require('dotenv').config();
-
+require('dotenv').config({ path: '.env.production' });
 
 const app = express();
 
 const PORT = process.env.PORT || 8081;
 
 app.use(cors({
-    origin: ["https://hoyun-church.kro.kr"],
+    origin: process.env.CORS_ORIGIN,
     methods: ["POST", "GET"],
     credentials: true
 }));
@@ -22,10 +21,10 @@ app.use(cookieParser());
 app.get("/", (req, res) => res.send("express on vercel"));
 
 const db = mysql.createConnection({
-    host: 'bcowgazscvnaucuxrwya-mysql.services.clever-cloud.com',
-    user: 'uri6aztvfszmmws5',
-    password: 'FsdxYJV9pPpQ1PoH1gJD',
-    database: 'bcowgazscvnaucuxrwya',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
