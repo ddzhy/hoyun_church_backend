@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: ["https://hoyun-church.kro.kr"],
     methods: ["POST", "GET"],
     credentials: true
 }));
