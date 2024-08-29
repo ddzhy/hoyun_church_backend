@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: '.env.production' });  // 환경 변수 로드
 
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8081
 
 // CORS 설정
 app.use(cors({
