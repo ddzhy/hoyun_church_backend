@@ -92,7 +92,7 @@ app.post('/login', (req, res) => {
                 if (result) {
                     const name = data[0].name;
                     const email = data[0].email;
-                    const token = jwt.sign({ name, email }, process.env.JWT_SECRET, { expiresIn: '1d' });
+                    const token = jwt.sign({ name, email }, "jwt-secret-key", { expiresIn: '1d' });
                     res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
                     return res.json("Login Successful");
                 } else {
