@@ -45,7 +45,7 @@ const verifyUser = (req, res, next) => {
     if (!token) {
         return res.json({ error: "You are not authenticated" });
     } else {
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
             if (err) {
                 return res.json({ error: "Invalid token" });
             } else {
@@ -101,7 +101,7 @@ app.post('/login', (req, res) => {
             });
         } else {
             return res.json("Fail");
-        }
+        };
     });
 });
 
