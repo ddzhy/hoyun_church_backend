@@ -14,7 +14,7 @@ app.use(cors({
     origin: ["https://hoyun-church.kro.kr"],  // 실제 사용될 프론트엔드 도메인
     methods: ["POST", "GET", "OPTIONS"],      // CORS preflight 요청을 처리하기 위해 OPTIONS 추가
     credentials: true                         // 클라이언트 측 쿠키 사용 허용
-}));
+}))
 
 app.use(express.json());
 app.use(cookieParser());
@@ -24,10 +24,10 @@ app.get("/", (req, res) => res.send("express on vercel"));
 
 // MySQL 데이터베이스 설정
 const db = mysql.createConnection({
-    host: "mysqlfirstproject-ddzhy.g.aivencloud.com",
-    user: "avnadmin",
-    password: "AVNS_OYfYaW8R4AvrAF74R7C",
-    database: "defaultdb",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
 });
 
 // MySQL 연결
