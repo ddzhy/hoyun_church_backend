@@ -53,7 +53,7 @@ const verifyUser = (req, res, next) => {
                 next();
             }
         });
-    }
+    };
 };
 
 // 회원가입 엔드포인트
