@@ -24,10 +24,10 @@ app.get("/", (req, res) => res.send("express on vercel"));
 
 // MySQL 데이터베이스 설정
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    host: "mysqlfirstproject-ddzhy.g.aivencloud.com",
+    user: "avnadmin",
+    password: "AVNS_OYfYaW8R4AvrAF74R7C",
+    database: "defaultdb",
 });
 
 // MySQL 연결
