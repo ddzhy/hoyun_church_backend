@@ -93,13 +93,23 @@ app.post('/login', (req, res) => {
                     console.error('Bcrypt Error:', err);  // 디버깅: bcrypt 오류 로그
                     return res.json("Error");
                 }
+                // 로그인 성공 후 쿠키 설정
                 if (result) {
                     const name = data[0].name;
                     const email = data[0].email;
                     const token = jwt.sign({ name, email }, "jwt-secret-key", { expiresIn: '1d' });
-                    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
-                    return res.json("Success");  // 수정: 성공 메시지 "Success"
-                } else {
+
+                    res.cookie('token', token, {
+                        httpOnly: true,  // 클라이언트 측 JavaScript에서 쿠키 접근 방지
+                        secure: true,    // HTTPS에서만 전송, 로컬 개발 환경에서는 false로 설정
+                        sameSite: 'None', // CORS 설정에 맞게 None, Strict, Lax 중 선택
+                        maxAge: 24 * 60 * 60 * 1000 // 1일 동안 유효
+                    });
+
+                    return res.json("Success");
+                }
+
+                 else {
                     return res.json("Fail");  // 실패한 경우
                 }
             });
