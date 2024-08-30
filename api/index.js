@@ -80,28 +80,33 @@ app.post('/signup', (req, res) => {
     });
 });
 
-// 로그인 엔드포인트
 app.post('/login', (req, res) => {
     const sql = "SELECT * FROM login WHERE `email` = ?";
     db.query(sql, [req.body.email], (err, data) => {
         if (err) {
+            console.error('Database Error:', err);  // 디버깅: 데이터베이스 오류 로그
             return res.json("Error");
         }
         if (data.length > 0) {
             bcrypt.compare(req.body.password, data[0].password, (err, result) => {
+                if (err) {
+                    console.error('Bcrypt Error:', err);  // 디버깅: bcrypt 오류 로그
+                    return res.json("Error");
+                }
                 if (result) {
                     const name = data[0].name;
                     const email = data[0].email;
                     const token = jwt.sign({ name, email }, "jwt-secret-key", { expiresIn: '1d' });
                     res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'Strict' });
-                    return res.json("Login Successful");
+                    return res.json("Success");  // 수정: 성공 메시지 "Success"
                 } else {
-                    return res.json("Fail");
+                    return res.json("Fail");  // 실패한 경우
                 }
             });
         } else {
-            return res.json("Fail");
-        };
+            console.log('No user found with email:', req.body.email);  // 디버깅: 사용자 이메일 로그
+            return res.json("Fail");  // 수정: 실패 메시지 "Fail"
+        }
     });
 });
 
