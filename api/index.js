@@ -101,7 +101,7 @@ app.post('/login', (req, res) => {
                     return res.json("Success");  // 수정: 성공 메시지 "Success"
                 } else {
                     return res.json("Fail");  // 실패한 경우
-                }
+                };
             });
         } else {
             console.log('No user found with email:', req.body.email);  // 디버깅: 사용자 이메일 로그
