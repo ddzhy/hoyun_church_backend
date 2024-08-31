@@ -4,7 +4,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-require('dotenv').config({ path: '.env.production' });  // 환경 변수 로드
+// require('dotenv').config({ path: '.env.production' });  // 환경 변수 로드
 
 const app = express();
 const PORT = process.env.PORT || 8081
@@ -24,10 +24,10 @@ app.get("/", (req, res) => res.send("express on vercel"));
 
 // MySQL 데이터베이스 설정
 const db = mysql.createConnection({
-    host: "bcowgazscvnaucuxrwya-mysql.services.clever-cloud.com",
-    user: "uri6aztvfszmmws5",
-    password: "FsdxYJV9pPpQ1PoH1gJD",
-    database: "bcowgazscvnaucuxrwya",
+    host: "bksiznx43rtgocveooqs-mysql.services.clever-cloud.com",
+    user: "u1nm1eyt6osgme5i",
+    password: "tsc3QVnnpxhJ7sIpIL3Y",
+    database: "bksiznx43rtgocveooqs",
 });
 
 // MySQL 연결
