@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8081
 
 // CORS 설정
 app.use(cors({
-    origin: ["http://localhost:3000"],  // 실제 사용될 프론트엔드 도메인
+    origin: ["https://hoyun-church.kro.kr"],  // 실제 사용될 프론트엔드 도메인
     methods: ["POST", "GET", "OPTIONS"],      // CORS preflight 요청을 처리하기 위해 OPTIONS 추가
     credentials: true                         // 클라이언트 측 쿠키 사용 허용
 }));
