@@ -24,10 +24,10 @@ app.get("/", (req, res) => res.send("express on vercel"));
 
 // MySQL 데이터베이스 설정
 const db = mysql.createConnection({
-    host: "bksiznx43rtgocveooqs-mysql.services.clever-cloud.com",
-    user: "u1nm1eyt6osgme5i",
-    password: "tsc3QVnnpxhJ7sIpIL3Y",
-    database: "bksiznx43rtgocveooqs",
+    host: "mysqlfirstproject-ddzhy.g.aivencloud.com",
+    user: "avnadmin",
+    password: "AVNS_OYfYaW8R4AvrAF74R7C",
+    database: "defaultdb",
 });
 
 // MySQL 연결
