@@ -4,13 +4,17 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-// require('dotenv').config({ path: '.env.production' });  // 환경 변수 로드
+require('dotenv').config({ path: '.env.production' });  // 환경 변수 로드
 
 const app = express();
 const PORT = process.env.PORT || 8081
 
 // CORS 설정
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3000"],  // 실제 사용될 프론트엔드 도메인
+    methods: ["POST", "GET", "OPTIONS"],      // CORS preflight 요청을 처리하기 위해 OPTIONS 추가
+    credentials: true                         // 클라이언트 측 쿠키 사용 허용
+}));
 
 app.use(express.json());
 app.use(cookieParser());
